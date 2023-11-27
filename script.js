@@ -1,7 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', addElement);
 
-const btn = document.querySelector('button');
+const btn = document.querySelector('.size');
 let container = document.querySelector('.container');
 btn.addEventListener('click', getUserInput);
 
@@ -10,7 +10,7 @@ function getUserInput() {
     container.innerHTML = '';
     const userInput = prompt('How many squares would you like?');
     if(userInput>100) {
-        console.log('too big number');
+      window.alert("The number is too big");
     }
     else {
         for(let i=0; i<userInput; i++) {
@@ -23,7 +23,7 @@ function getUserInput() {
             }
         } 
         colorGrids();
-} 
+}
 
 }
 
@@ -44,13 +44,46 @@ function addElement() {
     cell.forEach(cell => { 
     cell.addEventListener("mouseenter", changeColor);
         });
+}
+    const blackBtn = document.querySelector('.black');
+    const rainbowBtn = document.querySelector('.rainbow');
+    
+    let color = '';
+    blackBtn.addEventListener('click', (e) => {
+        color = 'black';
+    });
+
+    rainbowBtn.addEventListener('click', (e) => {
+        color = 'rainbow'
+    });   
+
+//color the squares depending on the mode selected
     function changeColor(event) {
         let currentCell = event.target;
-        currentCell.style.backgroundColor = 'black';
-    }   
-}
+        switch(color){
+            case '':
+                currentCell.style.backgroundColor = 'rgba(0, 0, 0, 0.21)';
+                break;
+            case 'black': 
+                currentCell.style.backgroundColor = 'rgba(0, 0, 0, 1)';
+                break;
+            case 'rainbow':
+               currentCell.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16); 
+               break;
+        } 
+    }
 
-//add warning if the input number is bigger than 100;
-//add a reset button which resets the grid size to the original size
-//randomize the color 
+// reset button - wipes the colors and resets the grid size
+const resetBtn = document.querySelector('.reset');
+
+resetBtn.addEventListener('click', (e) => {
+    container.innerHTML = '';
+    addElement();
+});
+        
+        
+  
+
+
+
 

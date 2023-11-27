@@ -15,13 +15,19 @@ h1 {
 button {
     align-self: center;
     padding: 10px;
-    margin: 20px;
+    margin: 10px;
+}
+
+.black, .rainbow, .reset {
+    padding: 20px;
+    margin-top: 10px;
 }
 
 .container {
    max-width: 512px;
    max-height: 512px;
    padding: 0;
+   margin: 20px;
 
    display: flex;
    flex-wrap: wrap;
